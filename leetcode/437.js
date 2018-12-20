@@ -33,24 +33,23 @@ function TreeNode(val) {
 }
 
 var pathSum = function(root, sum) {
-  let numSums = 0;
-
+  let total = 0;
+  let ans = [];
   const helper = (node, arr) => {
     if (node === null) { return; }
     arr = arr.map(x => x + node.val);
     arr.push(node.val);
-    arr.forEach(element => {
-      if (element === sum) {
-        numSums += 1;
-      }
-    });
+    ans.push(...arr);
     if (node.left) { helper(node.left, [...arr]) };
     if (node.right) { helper(node.right, [...arr]) };
   };
 
   helper(root, []);
-
-  return numSums;
+  
+  ans.forEach(element => {
+    if (element === sum) { total +=1 ;}
+  });
+  return total;
 };
 
 module.exports = {pathSum, TreeNode};
