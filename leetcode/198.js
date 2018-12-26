@@ -1,5 +1,5 @@
 /**
- * @param {number[]} nums
+ * @param {number[]} numsy
  * @return {number}
  */
 var rob = function(nums) {
@@ -8,6 +8,7 @@ var rob = function(nums) {
     let hop2 = nums[i] + helper(nums, i + 2, size);
     let hop3 = nums[i] + helper(nums, i + 3, size);
     // console.log(i + 2, i + 3, size);
+    console.log(hop2, hop3);
     return Math.max(hop2, hop3);
   };
 
