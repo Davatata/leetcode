@@ -10,18 +10,21 @@
  * @param {ListNode} head
  * @return {boolean}
  */
+
 function ListNode(val) {
   this.val = val;
   this.next = null;
 }
 
 var hasCycle = function(head) {
-  let seen = {};
+  let seen = [];
   while(head !== null) {
-    if (seen[head.val]) {
-      return true;
+    for (const node of seen) {
+      if (node === head) {
+        return true;
+      }
     }
-    seen[head.val] = true;
+    seen.push(head);
     head = head.next;
   }
   return false;
