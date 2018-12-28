@@ -3,22 +3,20 @@
  * @return {number}
  */
 var rob = function(nums) {
-  const helper = (nums, i, size) => {
-    if ( i > size)  { return 0; }
-    let hop2 = nums[i] + helper(nums, i + 2, size);
-    let hop3 = nums[i] + helper(nums, i + 3, size);
-    // console.log(i + 2, i + 3, size);
-    console.log(hop2, hop3);
-    return Math.max(hop2, hop3);
-  };
-
-  // let sum = helper(nums, 3, nums.length - 1);
-  // let path1 = nums[0] + 
-
-  let first = helper(nums, 3, nums.length-1);
-  // let second = helper(nums, 1, nums.length-1);
-  
-  return first;
+  if (nums.length === 0) return 0;
+  for (let i = 2; i < nums.length; i++) {
+    let curr = nums[i];
+    let t1 = 0;
+    let t2 = 0;
+    if (i - 2 >= 0) {
+      t1 = nums[i-2] + curr;
+    }
+    if (i - 3 >= 0) {
+      t2 = nums[i-3] + curr;
+    }
+    nums[i] = Math.max(t1, t2);
+  }
+  return nums.sort((a,b) => b - a)[0];
 };
 
 module.exports = {rob};
